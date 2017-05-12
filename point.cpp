@@ -77,6 +77,8 @@ private:
 };
 
 int main(int argc, char const *argv[]) {
+  cout << "Assigning dynamically allocated int to new SmartPtr"
+       << ", int = 5" << endl;
   SmartPtr<int> point = SmartPtr<int>(new int(5));
 
   cout << "Overloaded ouput operator prints pointer address: " << point
@@ -86,19 +88,19 @@ int main(int argc, char const *argv[]) {
   cout << endl << "Reassigning SmartPtr takes care of deallocating"
        << " old value..." << endl;
 
-  cout << endl << "Assigning to dynamically allocated int = 7" << endl;
+  cout << endl << "Assigning dynamically allocated int = 7" << endl;
 
   point.reset(new int(7));
   cout << "New values: " << point << " and " << *point << endl;
 
 
-  cout << endl << "Assigning to dynamically allocated string "
-       << "= `Hello, Pointer`" << endl;
+  cout << endl << "Assigning dynamically allocated string to new SmartPtr"
+       << " = `Hello, Pointer!`" << endl;
 
   SmartPtr<string> point2 = SmartPtr<string>(new string("Hello, Pointer!"));
   cout << "String address and value: " << point2 << " and " << *point2 << endl;
 
-  cout << endl << "Using -> operator to grab replace `Pointer` with `World`..."
+  cout << endl << "Using -> operator to replace `Pointer` with `World`..."
        << endl << "Output string: "
        << point2->replace(7, point2->length(), "World!") << endl;
 
