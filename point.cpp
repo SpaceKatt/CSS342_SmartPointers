@@ -25,7 +25,7 @@ public:
     ptr = rhs;
   }
 
-  Object operator*() { //const SmartPtr<object>& rhs) {
+  Object operator*() {
     return *ptr;
   }
 
@@ -40,7 +40,10 @@ private:
 int main(int argc, char const *argv[]) {
   SmartPtr<int> point;
   point = new int(5);
-  cout << point << " " << *point << endl;
+  cout << "Overloaded ouput operator prints pointer address: " << point << endl;
+  cout << "Overloaded dereference operator returns object: " << *point << endl;
+  cout << endl << "At the end of a method, SmartPtr deconstructor "
+       << "deallocates object pointed to by ptr." << endl;
 
   return 0;
 }
