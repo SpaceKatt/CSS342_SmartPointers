@@ -42,7 +42,7 @@ public:
   /*
    * Assigns new pointer, deallocates old one.
    */
-  const SmartPtr& reset(Object *rhs) {
+  SmartPtr& reset(Object *rhs) {
     deletePtr();
     ptr = rhs;
   }
