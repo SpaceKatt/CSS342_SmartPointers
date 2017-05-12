@@ -72,7 +72,6 @@ int main(int argc, char const *argv[]) {
   cout << endl << "Assigning to dynamically allocated int = 7" << endl;
 
   point.reset(new int(7));
-  
   cout << "New values: " << point << " and " << *point << endl;
 
   cout << endl << "At the end of a method, SmartPtr deconstructor "
