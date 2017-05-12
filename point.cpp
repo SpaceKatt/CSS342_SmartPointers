@@ -29,8 +29,7 @@ public:
    * Deconstructor deallocates pointer.
    */
   ~SmartPtr() {
-    delete ptr;
-    ptr = NULL;
+    deletePtr();
   }
 
   /*
