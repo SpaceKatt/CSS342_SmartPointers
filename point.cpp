@@ -24,7 +24,7 @@ public:
   }
 
   /*
-   * Deconstructor deallocates pointer
+   * Deconstructor deallocates pointer.
    */
   ~SmartPtr() {
     delete ptr;
@@ -39,12 +39,10 @@ public:
     ptr = NULL;
   }
 
-  const SmartPtr& operator=(const SmartPtr &rhs) {
-    deletePtr();
-    ptr = rhs.prt;
-  }
-
-  const SmartPtr& operator=(Object *rhs) {
+  /*
+   * Assigns new pointer, deallocates old one.
+   */
+  const SmartPtr& reset(Object *rhs) {
     deletePtr();
     ptr = rhs;
   }
@@ -72,8 +70,9 @@ int main(int argc, char const *argv[]) {
        << " old value..." << endl;
 
   cout << endl << "Assigning to dynamically allocated int = 7" << endl;
-  point = new int(7);
 
+  point.reset(new int(7));
+  
   cout << "New values: " << point << " and " << *point << endl;
 
   cout << endl << "At the end of a method, SmartPtr deconstructor "
