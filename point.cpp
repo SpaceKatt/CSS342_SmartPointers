@@ -1,6 +1,8 @@
 #include <iostream>
 #include <ostream>
+#include <string>
 
+using std::string;
 using std::cout;
 using std::cin;
 using std::endl;
@@ -55,6 +57,13 @@ public:
   }
 
   /*
+   * Overloads -> operator, allows use of referenced Object's methods.
+   */
+  Object* operator->() {
+    return ptr;
+  }
+
+  /*
    * Overloads output operator, outputs memory address of Object
    */
   friend std::ostream& operator<<(std::ostream& ost,
@@ -70,7 +79,8 @@ private:
 int main(int argc, char const *argv[]) {
   SmartPtr<int> point = SmartPtr<int>(new int(5));
 
-  cout << "Overloaded ouput operator prints pointer address: " << point << endl;
+  cout << "Overloaded ouput operator prints pointer address: " << point
+       << endl;
   cout << "Overloaded dereference operator returns object: " << *point << endl;
 
   cout << endl << "Reassigning SmartPtr takes care of deallocating"
@@ -81,7 +91,18 @@ int main(int argc, char const *argv[]) {
   point.reset(new int(7));
   cout << "New values: " << point << " and " << *point << endl;
 
-  cout << endl << "At the end of a method, SmartPtr deconstructor "
+
+  cout << endl << "Assigning to dynamically allocated string "
+       << "= `Hello, Pointer`" << endl;
+
+  SmartPtr<string> point2 = SmartPtr<string>(new string("Hello, Pointer!"));
+  cout << "String address and value: " << point2 << " and " << *point2 << endl;
+
+  cout << endl << "Using -> operator to grab replace `Pointer` with `World`..."
+       << endl << "Output string: "
+       << point2->replace(7, point2->length(), "World!") << endl;
+
+  cout << endl << "At the end of a method, SmartPtr's deconstructor "
        << "deallocates object pointed to by ptr." << endl;
 
   return 0;
