@@ -47,16 +47,23 @@ public:
     ptr = rhs;
   }
 
+  /*
+   * Overloads dereference operator, returns value pointed to by ptr.
+   */
   Object operator*() {
     return *ptr;
   }
 
+  /*
+   * Overloads output operator, outputs memory address of Object
+   */
   friend std::ostream& operator<<(std::ostream& ost,
                                   const SmartPtr<Object>& rat) {
     ost << rat.ptr;
     return ost;
   }
 private:
+  /* Normal pointer which becomes smart by wrapping it in class. */
   Object* ptr;
 };
 
