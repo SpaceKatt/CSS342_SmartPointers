@@ -46,6 +46,7 @@ public:
   SmartPtr& reset(Object *rhs) {
     deletePtr();
     ptr = rhs;
+    return *this;
   }
 
   /*
@@ -89,7 +90,7 @@ int main(int argc, char const *argv[]) {
 
   cout << endl << "Assigning dynamically allocated int = 7" << endl;
 
-  point.reset(new int(7));
+  point.reset(new int(6)).reset(new int(7));
   cout << "New values: " << point << " and " << *point << endl;
 
 
